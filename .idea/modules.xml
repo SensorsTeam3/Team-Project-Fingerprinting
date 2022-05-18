@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/WifiIndoorPositioning.iml" filepath="$PROJECT_DIR$/.idea/modules/WifiIndoorPositioning.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/WifiIndoorPositioning.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/WifiIndoorPositioning.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Team-Project-Fingerprinting.iml" filepath="$PROJECT_DIR$/.idea/modules/Team-Project-Fingerprinting.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Team-Project-Fingerprinting.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Team-Project-Fingerprinting.app.iml" />
     </modules>
   </component>
 </project>
