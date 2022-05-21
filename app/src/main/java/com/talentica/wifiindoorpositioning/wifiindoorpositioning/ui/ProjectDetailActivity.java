@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -47,6 +48,8 @@ public class ProjectDetailActivity extends AppCompatActivity implements View.OnC
     private String projectId;
     private int PERM_REQ_CODE_RP_ACCESS_COARSE_LOCATION = 198;
     private int PERM_REQ_CODE_LM_ACCESS_COARSE_LOCATION = 197;
+    //유저
+    private int user;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -54,6 +57,7 @@ public class ProjectDetailActivity extends AppCompatActivity implements View.OnC
         setContentView(R.layout.activity_project_detail);
 
         projectId = getIntent().getStringExtra("id");
+        user = getIntent().getIntExtra("user", 2);
         if (projectId == null) {
             Toast.makeText(getApplicationContext(), "Project Not Found", Toast.LENGTH_LONG).show();
             this.finish();
@@ -122,16 +126,27 @@ public class ProjectDetailActivity extends AppCompatActivity implements View.OnC
     @Override
     public void onClick(View view) {
         if (view.getId() == btnAddAp.getId()) {
-            startAddAPActivity("");
+            if (user == 2){
+                Toast.makeText(this, "The guest does not have access.", Toast.LENGTH_SHORT).show();
+            }
+            else {
+                startAddAPActivity("");
+            }
         } else if (view.getId() == btnAddRp.getId()) {
-            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED){
-                requestPermissions(new String[]{Manifest.permission.ACCESS_COARSE_LOCATION},
-                        PERM_REQ_CODE_RP_ACCESS_COARSE_LOCATION);
-                //After this point you wait for callback in onRequestPermissionsResult(int, String[], int[]) overriden method
-            } else{
-                startAddRPActivity(null);
+            if (user == 2){
+                Toast.makeText(this, "The guest does not have access.", Toast.LENGTH_SHORT).show();
+            }
+            else {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                    requestPermissions(new String[]{Manifest.permission.ACCESS_COARSE_LOCATION},
+                            PERM_REQ_CODE_RP_ACCESS_COARSE_LOCATION);
+                    //After this point you wait for callback in onRequestPermissionsResult(int, String[], int[]) overriden method
+                } else {
+                    startAddRPActivity(null);
+                }
             }
         } else if (view.getId() == btnLocateMe.getId()) {
+            //location
             if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED){
                 requestPermissions(new String[]{Manifest.permission.ACCESS_COARSE_LOCATION},
                         PERM_REQ_CODE_LM_ACCESS_COARSE_LOCATION);

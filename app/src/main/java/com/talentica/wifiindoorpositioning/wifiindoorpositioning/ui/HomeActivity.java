@@ -35,6 +35,9 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     private RecyclerView.LayoutManager mLayoutManager;
     private FloatingActionButton fab;
 
+    //유저
+    private int user;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -117,14 +120,29 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onItemClick(View view, int position) {
+        Intent intent2 = new Intent(this, SelectUser.class);
+        startActivityForResult(intent2, 101);
+
         Intent intent = new Intent(this, ProjectDetailActivity.class);
         IndoorProject project = projects.get(position);
         intent.putExtra("id", project.getId());
+        intent.putExtra("user", user);
         startActivity(intent);
     }
 
     @Override
     public void onLongClick(View view, int position) {
 
+    }
+    //유저
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == 101){
+            if (data != null){
+                user = data.getIntExtra("user", 0);
+            }
+        }
     }
 }

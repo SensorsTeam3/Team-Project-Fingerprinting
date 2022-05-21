@@ -3,7 +3,18 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/82103/AndroidStudioProjects/WifiIndoorPositioning/Team-Project-Fingerprinting/app/src/main/res/layout/activity_add_access_point.xml" value="0.1" />
+        <entry key="..\:/Users/82103/AndroidStudioProjects/WifiIndoorPositioning/Team-Project-Fingerprinting/app/src/main/res/layout/activity_add_reference_point.xml" value="0.1" />
+        <entry key="..\:/Users/82103/AndroidStudioProjects/WifiIndoorPositioning/Team-Project-Fingerprinting/app/src/main/res/layout/activity_home.xml" value="0.1" />
         <entry key="..\:/Users/82103/AndroidStudioProjects/WifiIndoorPositioning/Team-Project-Fingerprinting/app/src/main/res/layout/activity_locate_me.xml" value="0.10104166666666667" />
+        <entry key="..\:/Users/82103/AndroidStudioProjects/WifiIndoorPositioning/Team-Project-Fingerprinting/app/src/main/res/layout/activity_new_project.xml" value="0.1" />
+        <entry key="..\:/Users/82103/AndroidStudioProjects/WifiIndoorPositioning/Team-Project-Fingerprinting/app/src/main/res/layout/activity_project_detail.xml" value="0.128" />
+        <entry key="..\:/Users/82103/AndroidStudioProjects/WifiIndoorPositioning/Team-Project-Fingerprinting/app/src/main/res/layout/activity_seach_wifis.xml" value="0.1" />
+        <entry key="..\:/Users/82103/AndroidStudioProjects/WifiIndoorPositioning/Team-Project-Fingerprinting/app/src/main/res/layout/activity_select.xml" value="0.1" />
+        <entry key="..\:/Users/82103/AndroidStudioProjects/WifiIndoorPositioning/Team-Project-Fingerprinting/app/src/main/res/layout/content_home.xml" value="0.1" />
+        <entry key="..\:/Users/82103/AndroidStudioProjects/WifiIndoorPositioning/Team-Project-Fingerprinting/app/src/main/res/layout/item_point_details.xml" value="0.16" />
+        <entry key="..\:/Users/82103/AndroidStudioProjects/WifiIndoorPositioning/Team-Project-Fingerprinting/app/src/main/res/layout/item_project_list.xml" value="0.1" />
+        <entry key="..\:/Users/82103/AndroidStudioProjects/WifiIndoorPositioning/Team-Project-Fingerprinting/app/src/main/res/menu/menu_home.xml" value="0.1234375" />
         <entry key="..\:/Users/82103/AndroidStudioProjects/WifiIndoorPositioning/app/src/main/res/drawable/ic_launcher_background.xml" value="0.15" />
         <entry key="..\:/Users/82103/AndroidStudioProjects/WifiIndoorPositioning/app/src/main/res/layout/activity_add_access_point.xml" value="0.264" />
         <entry key="..\:/Users/82103/AndroidStudioProjects/WifiIndoorPositioning/app/src/main/res/layout/activity_add_reference_point.xml" value="0.2" />
