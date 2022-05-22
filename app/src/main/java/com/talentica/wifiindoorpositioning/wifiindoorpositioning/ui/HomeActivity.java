@@ -36,7 +36,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     private FloatingActionButton fab;
 
     //유저
-    private int user;
+    private int user = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -120,14 +120,18 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onItemClick(View view, int position) {
-        Intent intent2 = new Intent(this, SelectUser.class);
-        startActivityForResult(intent2, 101);
-
-        Intent intent = new Intent(this, ProjectDetailActivity.class);
-        IndoorProject project = projects.get(position);
-        intent.putExtra("id", project.getId());
-        intent.putExtra("user", user);
-        startActivity(intent);
+        if(user!=0) {
+            Intent intent = new Intent(this, ProjectDetailActivity.class);
+            IndoorProject project = projects.get(position);
+            intent.putExtra("id", project.getId());
+            intent.putExtra("user", user);
+            startActivity(intent);
+            user=0;
+        }
+        else {
+            Intent intent2 = new Intent(this, SelectUser.class);
+            startActivityForResult(intent2, 101);
+        }
     }
 
     @Override
