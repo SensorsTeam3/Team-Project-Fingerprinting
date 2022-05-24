@@ -12,6 +12,9 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,6 +29,8 @@ import com.talentica.wifiindoorpositioning.wifiindoorpositioning.model.WifiData;
 import com.talentica.wifiindoorpositioning.wifiindoorpositioning.utils.AppContants;
 import com.talentica.wifiindoorpositioning.wifiindoorpositioning.utils.Utils;
 
+import java.util.ArrayList;
+
 import io.realm.Realm;
 
 /**
@@ -33,6 +38,10 @@ import io.realm.Realm;
  */
 
 public class LocateMeActivity extends AppCompatActivity {
+
+    private ImageView map;
+    private Button mapButton;
+    private String LocationMapValue;
 
     private WifiData mWifiData;
     private Algorithms algorithms = new Algorithms();
@@ -48,6 +57,7 @@ public class LocateMeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
 
         mWifiData = null;
 
@@ -74,6 +84,14 @@ public class LocateMeActivity extends AppCompatActivity {
         Realm realm = Realm.getDefaultInstance();
         project = realm.where(IndoorProject.class).equalTo("id", projectId).findFirst();
         Log.v("LocateMeActivity", "onCreate");
+
+        mapButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                visibleMap(LocationMapValue);
+            }
+        });
+
     }
 
     private void initUI() {
@@ -85,6 +103,9 @@ public class LocateMeActivity extends AppCompatActivity {
         rvPoints.setLayoutManager(layoutManager);
         rvPoints.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
         rvPoints.setAdapter(readingsAdapter);
+
+        map = findViewById(R.id.map);
+        mapButton = findViewById(R.id.MapButton);
     }
 
     @Override
@@ -112,9 +133,11 @@ public class LocateMeActivity extends AppCompatActivity {
                     LocDistance theNearestPoint = Utils.getTheNearestPoint(loc);
                     if (theNearestPoint != null) {
                         tvNearestLocation.setText("You are near to: " + theNearestPoint.getName());
+                        LocationMapValue = theNearestPoint.getName();
                     }
                     readingsAdapter.setReadings(loc.getPlaces());
                     readingsAdapter.notifyDataSetChanged();
+                    
                 }
             }
         }
@@ -125,5 +148,18 @@ public class LocateMeActivity extends AppCompatActivity {
         super.onDestroy();
         LocalBroadcastManager.getInstance(this).unregisterReceiver(mReceiver);
         stopService(wifiServiceIntent);
+    }
+
+    private void visibleMap(String locationValue){
+        StringBuilder fileName = new StringBuilder("map_");
+        fileName.append( locationValue );
+        int resID = getResources().getIdentifier(fileName.toString(), "drawable", getPackageName());
+        try {
+            map.setImageResource(resID);
+        }catch (Exception e){
+            Toast.makeText(this, "실패", Toast.LENGTH_SHORT).show();
+            map.setImageResource(R.drawable.ic_launcher_background);
+        }
+        map.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
     }
 }

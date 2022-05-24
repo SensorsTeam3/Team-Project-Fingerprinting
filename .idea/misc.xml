@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/82103/AndroidStudioProjects/WifiIndoorPositioning/Team-Project-Fingerprinting/app/src/main/res/drawable/ic_launcher_background.xml" value="0.25677083333333334" />
         <entry key="..\:/Users/82103/AndroidStudioProjects/WifiIndoorPositioning/Team-Project-Fingerprinting/app/src/main/res/layout/activity_add_access_point.xml" value="0.1" />
         <entry key="..\:/Users/82103/AndroidStudioProjects/WifiIndoorPositioning/Team-Project-Fingerprinting/app/src/main/res/layout/activity_add_reference_point.xml" value="0.1" />
         <entry key="..\:/Users/82103/AndroidStudioProjects/WifiIndoorPositioning/Team-Project-Fingerprinting/app/src/main/res/layout/activity_home.xml" value="0.1" />
