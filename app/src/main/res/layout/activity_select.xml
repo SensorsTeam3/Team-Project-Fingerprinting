@@ -16,22 +16,33 @@
         android:layout_marginLeft="70dp"
         android:layout_marginTop="150dp"
         android:gravity="center_horizontal" />
+
+    <EditText
+        android:id="@+id/PassWord"
+        android:layout_width="100dp"
+        android:layout_height="25dp"
+        android:background="#E8E8E8"
+        android:ems="10"
+        android:hint="Password"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="155dp"/>
+
     <Button
         android:id="@+id/Admin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/buttons"
-        android:text="Admin"
         android:layout_marginLeft="160dp"
-        android:layout_marginTop="80dp"/>
+        android:layout_marginTop="80dp"
+        android:background="@color/buttons"
+        android:text="Admin" />
 
     <Button
         android:id="@+id/Geust"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/buttons"
-        android:text="Guest"
         android:layout_marginLeft="160dp"
-        android:layout_marginTop="10dp"/>
+        android:layout_marginTop="10dp"
+        android:background="@color/buttons"
+        android:text="Guest" />
 
 </LinearLayout>

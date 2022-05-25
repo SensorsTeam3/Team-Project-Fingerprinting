@@ -38,10 +38,14 @@ import io.realm.Realm;
  */
 
 public class LocateMeActivity extends AppCompatActivity {
-
+    //지도,시간표
     private ImageView map;
     private Button mapButton;
     private String LocationMapValue;
+
+    private ImageView tt;
+    private Button ttButton;
+
 
     private WifiData mWifiData;
     private Algorithms algorithms = new Algorithms();
@@ -85,10 +89,18 @@ public class LocateMeActivity extends AppCompatActivity {
         project = realm.where(IndoorProject.class).equalTo("id", projectId).findFirst();
         Log.v("LocateMeActivity", "onCreate");
 
+        //맵, 시간표
         mapButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 visibleMap(LocationMapValue);
+            }
+        });
+
+        ttButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                visibleTimeTable(LocationMapValue);
             }
         });
 
@@ -106,6 +118,7 @@ public class LocateMeActivity extends AppCompatActivity {
 
         map = findViewById(R.id.map);
         mapButton = findViewById(R.id.MapButton);
+        ttButton = findViewById(R.id.TimeTable);
     }
 
     @Override
@@ -157,7 +170,19 @@ public class LocateMeActivity extends AppCompatActivity {
         try {
             map.setImageResource(resID);
         }catch (Exception e){
-            Toast.makeText(this, "실패", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "데이터가 없음.", Toast.LENGTH_SHORT).show();
+            map.setImageResource(R.drawable.ic_launcher_background);
+        }
+        map.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
+    }
+    private void visibleTimeTable(String locationValue){
+        StringBuilder fileName = new StringBuilder("tt_");
+        fileName.append( locationValue );
+        int resID = getResources().getIdentifier(fileName.toString(), "drawable", getPackageName());
+        try {
+            map.setImageResource(resID);
+        }catch (Exception e){
+            Toast.makeText(this, "데이터가 없음.", Toast.LENGTH_SHORT).show();
             map.setImageResource(R.drawable.ic_launcher_background);
         }
         map.setScaleType(ImageView.ScaleType.CENTER_INSIDE);

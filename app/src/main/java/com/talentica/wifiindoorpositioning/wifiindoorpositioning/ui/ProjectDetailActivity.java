@@ -98,6 +98,11 @@ public class ProjectDetailActivity extends AppCompatActivity implements View.OnC
         pointRV.setLayoutManager(layoutManager);
         pointRV.setAdapter(sectionAdapter);
         pointRV.addOnItemTouchListener(new RecyclerItemClickListener(this,pointRV, this));
+
+        if (user==2){
+            btnAddAp.setVisibility(View.INVISIBLE);
+            btnAddRp.setVisibility(View.INVISIBLE);
+        }
     }
 
     private void setCounts() {

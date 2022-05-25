@@ -58,6 +58,11 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         // specify an adapter
         mAdapter = new ProjectsListAdapter(projects);
         mRecyclerView.setAdapter(mAdapter);
+
+
+        Intent intent2 = new Intent(this, SelectUser.class);
+        startActivityForResult(intent2, 101);
+
     }
 
     @Override
@@ -120,18 +125,11 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onItemClick(View view, int position) {
-        if(user!=0) {
             Intent intent = new Intent(this, ProjectDetailActivity.class);
             IndoorProject project = projects.get(position);
             intent.putExtra("id", project.getId());
             intent.putExtra("user", user);
             startActivity(intent);
-            user=0;
-        }
-        else {
-            Intent intent2 = new Intent(this, SelectUser.class);
-            startActivityForResult(intent2, 101);
-        }
     }
 
     @Override
