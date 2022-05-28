@@ -59,10 +59,10 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         mAdapter = new ProjectsListAdapter(projects);
         mRecyclerView.setAdapter(mAdapter);
 
-
-        Intent intent2 = new Intent(this, SelectUser.class);
-        startActivityForResult(intent2, 101);
-
+        if(user==0) {
+            Intent intent2 = new Intent(this, SelectUser.class);
+            startActivityForResult(intent2, 101);
+        }
     }
 
     @Override

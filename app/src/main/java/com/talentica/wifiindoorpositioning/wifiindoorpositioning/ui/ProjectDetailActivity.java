@@ -100,8 +100,8 @@ public class ProjectDetailActivity extends AppCompatActivity implements View.OnC
         pointRV.addOnItemTouchListener(new RecyclerItemClickListener(this,pointRV, this));
 
         if (user==2){
-            btnAddAp.setVisibility(View.INVISIBLE);
-            btnAddRp.setVisibility(View.INVISIBLE);
+            btnAddAp.setVisibility(View.GONE);
+            btnAddRp.setVisibility(View.GONE);
         }
     }
 
