@@ -172,6 +172,7 @@ public class Algorithms {
 			}
 		});
 
+		//가중치
 		if (!isWeighted) {
 			myLocation = calculateAverageKDistanceLocations(locDistanceResultsList, K);
 		} else {
@@ -366,6 +367,7 @@ public class Algorithms {
 	 *            The number of locations used
 	 * @return The estimated user location, or null for error
 	 */
+	//가중치가중치가중치
 	private static String calculateWeightedAverageKDistanceLocations(ArrayList<LocDistance> LocDistance_Results_List, int K) {
 		double LocationWeight = 0.0f;
 		double sumWeights = 0.0f;
@@ -378,11 +380,12 @@ public class Algorithms {
 		int K_Min = K < LocDistance_Results_List.size() ? K : LocDistance_Results_List.size();
 
 		// Calculate the weighted sum of X and Y
+		//가중치 수정
 		for (int i = 0; i < K_Min; ++i) {
 			if (LocDistance_Results_List.get(i).getDistance() != 0.0) {
 				LocationWeight = 1 / LocDistance_Results_List.get(i).getDistance();
 			} else {
-				LocationWeight = 100;
+				LocationWeight = 300;
 			}
 			LocationArray = LocDistance_Results_List.get(i).getLocation().split(" ");
 
@@ -414,6 +417,7 @@ public class Algorithms {
 	 * 
 	 * @return The estimated user location, or null for error
 	 */
+	//가중치
 	private static String calculateWeightedAverageProbabilityLocations(ArrayList<LocDistance> LocDistance_Results_List) {
 		double sumProbabilities = 0.0f;
 		double WeightedSumX = 0.0f;

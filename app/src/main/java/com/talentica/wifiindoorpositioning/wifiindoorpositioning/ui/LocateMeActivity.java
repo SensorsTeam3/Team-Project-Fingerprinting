@@ -4,6 +4,10 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.content.LocalBroadcastManager;
@@ -42,9 +46,15 @@ public class LocateMeActivity extends AppCompatActivity {
     private ImageView map;
     private Button mapButton;
     private String LocationMapValue;
+    //기압계
+    String Press="";
+    private SensorManager mSM;
+    private Sensor myPress;
+
 
     private ImageView tt;
     private Button ttButton;
+
 
 
     private WifiData mWifiData;
@@ -61,7 +71,10 @@ public class LocateMeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        //기압계
+        mSM=(SensorManager) getSystemService(Context.SENSOR_SERVICE);
+        myPress = mSM.getDefaultSensor(Sensor.TYPE_PRESSURE);
+        mSM.registerListener(mySensorListener, myPress, SensorManager.SENSOR_DELAY_NORMAL);
 
         mWifiData = null;
 
@@ -105,6 +118,33 @@ public class LocateMeActivity extends AppCompatActivity {
         });
 
     }
+//기압계
+    @Override
+    protected void onStart() {
+        super.onStart();
+        mSM.registerListener(mySensorListener, myPress, SensorManager.SENSOR_DELAY_GAME);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        mSM.unregisterListener(mySensorListener);
+    }
+
+    public SensorEventListener mySensorListener = new SensorEventListener(){
+        @Override
+        public void onSensorChanged(SensorEvent sensorEvent) {
+            if(sensorEvent.sensor.getType()==Sensor.TYPE_PRESSURE){
+                Press=Float.toString(sensorEvent.values[0]);
+            }
+        }
+
+        @Override
+        public void onAccuracyChanged(Sensor sensor, int accuracy) {
+
+        }
+    };
+
 
     private void initUI() {
         layoutManager = new LinearLayoutManager(this);
@@ -145,7 +185,7 @@ public class LocateMeActivity extends AppCompatActivity {
                     tvDistance.setText("The distance from stage area is: " + theDistancefromOrigin + "m");
                     LocDistance theNearestPoint = Utils.getTheNearestPoint(loc);
                     if (theNearestPoint != null) {
-                        tvNearestLocation.setText("You are near to: " + theNearestPoint.getName());
+                        tvNearestLocation.setText("You are near to: " + theNearestPoint.getName()+"\n기압: "+Press);
                         LocationMapValue = theNearestPoint.getName();
                     }
                     readingsAdapter.setReadings(loc.getPlaces());
