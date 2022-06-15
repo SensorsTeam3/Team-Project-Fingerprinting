@@ -47,9 +47,10 @@ public class LocateMeActivity extends AppCompatActivity {
     private Button mapButton;
     private String LocationMapValue;
     //기압계
-    String Press="";
+    float Press=0;
     private SensorManager mSM;
     private Sensor myPress;
+    double F4=1000.85, F2=1001.90, F5=1000.35;
 
 
     private ImageView tt;
@@ -75,7 +76,6 @@ public class LocateMeActivity extends AppCompatActivity {
         mSM=(SensorManager) getSystemService(Context.SENSOR_SERVICE);
         myPress = mSM.getDefaultSensor(Sensor.TYPE_PRESSURE);
         mSM.registerListener(mySensorListener, myPress, SensorManager.SENSOR_DELAY_NORMAL);
-
         mWifiData = null;
 
         // set receiver
@@ -135,7 +135,7 @@ public class LocateMeActivity extends AppCompatActivity {
         @Override
         public void onSensorChanged(SensorEvent sensorEvent) {
             if(sensorEvent.sensor.getType()==Sensor.TYPE_PRESSURE){
-                Press=Float.toString(sensorEvent.values[0]);
+                Press=sensorEvent.values[0];
             }
         }
 
@@ -185,7 +185,8 @@ public class LocateMeActivity extends AppCompatActivity {
                     tvDistance.setText("The distance from stage area is: " + theDistancefromOrigin + "m");
                     LocDistance theNearestPoint = Utils.getTheNearestPoint(loc);
                     if (theNearestPoint != null) {
-                        tvNearestLocation.setText("You are near to: " + theNearestPoint.getName()+"\n기압: "+Press);
+                        int F=F_calulation(Press);
+                        tvNearestLocation.setText("You are near to: " + theNearestPoint.getName()+"\n현재 층수: "+F+"\n기압: "+Press);
                         LocationMapValue = theNearestPoint.getName();
                     }
                     readingsAdapter.setReadings(loc.getPlaces());
@@ -227,4 +228,28 @@ public class LocateMeActivity extends AppCompatActivity {
         }
         map.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
     }
+
+    private int F_calulation(float Cpress){
+        int F;
+
+        double f2=F2-Cpress;
+        double f4=F4-Cpress;
+        double f5=F5-Cpress;
+        if(f2<0)
+            f2=f2*(-1);
+        if(f4<0)
+            f4=f4*(-1);
+        if(f5<0)
+            f5=f5*(-1);
+        F=2;
+        if(f4<f2&&f4<f5) {
+            F = 4;
+        }
+        if(f5<f2&&f5<f4) {
+            F = 5;
+        }
+
+        return F;
+    }
 }
+
