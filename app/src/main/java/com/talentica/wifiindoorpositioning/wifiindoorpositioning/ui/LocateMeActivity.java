@@ -50,7 +50,7 @@ public class LocateMeActivity extends AppCompatActivity {
     float Press=0;
     private SensorManager mSM;
     private Sensor myPress;
-    double F4=1000.85, F2=1001.90, F5=1000.35;
+    double F4=999.53, F2=1000.65, F5=999.05;
 
 
     private ImageView tt;
